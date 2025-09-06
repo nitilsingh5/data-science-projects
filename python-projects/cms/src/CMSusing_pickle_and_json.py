@@ -81,103 +81,104 @@ class Customer:
 
 
 # Presentation Layer
-print('Welcome to CMS')
+if (__name__)==('__main__'):
+  print('Welcome to CMS')
 
-def getID():
-  while(1):
-    id=input('Enter Customer ID: ')
-    if id.isdecimal():
-      if not any(cus.id==id for cus in Customer.cus_list):
-        return id
+  def getID():
+    while(1):
+      id=input('Enter Customer ID: ')
+      if id.isdecimal():
+        if not any(cus.id==id for cus in Customer.cus_list):
+          return id
+        else:
+          print('duplicate id please enter unique id')
       else:
-        print('duplicate id please enter unique id')
-    else:
-      print('please enter id  only in digits')
-  
-def getAge():
-  while(1):
-    age=input('Enter Customer age: ')
-    if age.isdecimal():
-      if int(age)>=10 and int(age)<=60:
-        return age
+        print('please enter id  only in digits')
+    
+  def getAge():
+    while(1):
+      age=input('Enter Customer age: ')
+      if age.isdecimal():
+        if int(age)>=10 and int(age)<=60:
+          return age
+        else:
+          print('please enter age between 10 and 60')
       else:
-        print('please enter age between 10 and 60')
-    else:
-      print('Please Enter age only in digits')
+        print('Please Enter age only in digits')
 
-def getMob():
-  while(1):
-    mob=input('Enter Customer Mob: ')
-    if mob.isdecimal():
-      if len(mob)==10:
-        return mob
+  def getMob():
+    while(1):
+      mob=input('Enter Customer Mob: ')
+      if mob.isdecimal():
+        if len(mob)==10:
+          return mob
+        else:
+          print('Please Enter mob in 10 digits')
       else:
-        print('Please Enter mob in 10 digits')
-    else:
-      print('Please enter mob only in digits')
+        print('Please enter mob only in digits')
 
-def showCust(cus):
-  print('Cus ID:',cus.id,'Cus Name:',cus.name,'Cus Age:',cus.age,'Cus Mob:',cus.mob)
+  def showCust(cus):
+    print('Cus ID:',cus.id,'Cus Name:',cus.name,'Cus Age:',cus.age,'Cus Mob:',cus.mob)
 
-while(1):
-  ch=input('Enter choice: 1. add customer 2. search customer 3. delete customer 4. modify customer 5. display all customers 6. save to picle 7. load from pickle  8. sort 9.save to json 10.load from json 11.exit: ')
-  if ch=='1':
-    cus=Customer()
-    cus.id=getID()
-    cus.name=input('Enter Customer Name: ')
-    cus.age=getAge()
-    cus.mob=getMob()
-    cus.addCustomer()
-    print('Customer Added')
+  while(1):
+    ch=input('Enter choice: 1. add customer 2. search customer 3. delete customer 4. modify customer 5. display all customers 6. save to picle 7. load from pickle  8. sort 9.save to json 10.load from json 11.exit: ')
+    if ch=='1':
+      cus=Customer()
+      cus.id=getID()
+      cus.name=input('Enter Customer Name: ')
+      cus.age=getAge()
+      cus.mob=getMob()
+      cus.addCustomer()
+      print('Customer Added')
 
-  elif ch=='2':
-    cus=Customer()
-    cus.id=input('Enter Customer ID to Search: ')
-    cus.searchCustomer()
-    showCust(cus)
-  
-  elif ch=='3':
-    cus=Customer()
-    cus.id=input('Enter Customer ID to Delete: ')
-    cus.deleteCustomer()
-    print('Customer Deleted')
-  
-  elif ch=='4':
-    cus=Customer()
-    cus.id=input('Enter Customer ID to Modify: ')
-    cus.name=input('Enter Customer Name: ')
-    cus.age=getAge()
-    cus.mob=getMob()
-    cus.modifyCustomer()
-    print('Customer Modified')
-  
-  elif ch=='5':
-    for cus in Customer.cus_list:
+    elif ch=='2':
+      cus=Customer()
+      cus.id=input('Enter Customer ID to Search: ')
+      cus.searchCustomer()
       showCust(cus)
+    
+    elif ch=='3':
+      cus=Customer()
+      cus.id=input('Enter Customer ID to Delete: ')
+      cus.deleteCustomer()
+      print('Customer Deleted')
+    
+    elif ch=='4':
+      cus=Customer()
+      cus.id=input('Enter Customer ID to Modify: ')
+      cus.name=input('Enter Customer Name: ')
+      cus.age=getAge()
+      cus.mob=getMob()
+      cus.modifyCustomer()
+      print('Customer Modified')
+    
+    elif ch=='5':
+      for cus in Customer.cus_list:
+        showCust(cus)
 
-  elif ch=='6':
-    Customer.saveToPickle()
-    print('Saved in pickle')
+    elif ch=='6':
+      Customer.saveToPickle()
+      print('Saved in pickle')
 
-  elif ch=='7':
-    Customer.loadFromPickle()
-    print('Loaded from pickle')
+    elif ch=='7':
+      Customer.loadFromPickle()
+      print('Loaded from pickle')
 
-  elif ch=='8':
-    Customer.sortID()
-    print('Sorted')
-  
-  elif ch=='9':
-    Customer.saveToJson()
-    print('Saved in Json')
-  
-  elif ch=='10':
-    Customer.loadFromJson()
-    print('Loaded from Json')
-  
-  elif ch=='11':
-    print('Thank You for using CMS')
-    break
+    elif ch=='8':
+      Customer.sortID()
+      print('Sorted')
+    
+    elif ch=='9':
+      Customer.saveToJson()
+      print('Saved in Json')
+    
+    elif ch=='10':
+      Customer.loadFromJson()
+      print('Loaded from Json')
+    
+    elif ch=='11':
+      print('Thank You for using CMS')
+      break
 
-  else:
-    print('incorrect choice')
+    else:
+      print('incorrect choice')
